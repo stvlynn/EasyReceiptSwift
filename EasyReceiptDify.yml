@@ -1,0 +1,893 @@
+app:
+  description: ''
+  icon: 💰
+  icon_background: '#FEF7C3'
+  mode: workflow
+  name: 财务OCR工具
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.4
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1733125851003-source-1733125950689-target
+      source: '1733125851003'
+      sourceHandle: source
+      target: '1733125950689'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1733125950689-true-1733127061659-target
+      source: '1733125950689'
+      sourceHandle: 'true'
+      target: '1733127061659'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1733125950689-cad43819-628b-494c-9767-9a1375ebb399-1733127091564-target
+      source: '1733125950689'
+      sourceHandle: cad43819-628b-494c-9767-9a1375ebb399
+      target: '1733127091564'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1733125950689-4f54ad7b-9656-4e6f-b54a-29970bb1712d-1733127532425-target
+      source: '1733125950689'
+      sourceHandle: 4f54ad7b-9656-4e6f-b54a-29970bb1712d
+      target: '1733127532425'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1733127091564-source-1733133317808-target
+      source: '1733127091564'
+      sourceHandle: source
+      target: '1733133317808'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1733127532425-source-1733133345526-target
+      source: '1733127532425'
+      sourceHandle: source
+      target: '1733133345526'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1733127061659-source-1733133362018-target
+      source: '1733127061659'
+      sourceHandle: source
+      target: '1733133362018'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: end
+      id: 1733133362018-source-1733135108123-target
+      source: '1733133362018'
+      sourceHandle: source
+      target: '1733135108123'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: end
+      id: 1733133317808-source-1733135176476-target
+      source: '1733133317808'
+      sourceHandle: source
+      target: '1733135176476'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: end
+      id: 1733133345526-source-1733135210816-target
+      source: '1733133345526'
+      sourceHandle: source
+      target: '1733135210816'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: type
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: type
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: file
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: file
+      height: 116
+      id: '1733125851003'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 6b108fbb-c67e-4f58-9c57-eab847d4507d
+            value: DeliveryReceipt
+            varType: string
+            variable_selector:
+            - '1733125851003'
+            - type
+          id: 'true'
+          logical_operator: and
+        - case_id: cad43819-628b-494c-9767-9a1375ebb399
+          conditions:
+          - comparison_operator: contains
+            id: 3fcc470a-8c32-4761-8fdf-8de3ace3d9e0
+            value: TrainTicket
+            varType: string
+            variable_selector:
+            - '1733125851003'
+            - type
+          id: cad43819-628b-494c-9767-9a1375ebb399
+          logical_operator: and
+        - case_id: 4f54ad7b-9656-4e6f-b54a-29970bb1712d
+          conditions:
+          - comparison_operator: contains
+            id: abb02d73-20bc-448d-958a-56a33e22f9f4
+            value: EReceipt
+            varType: string
+            variable_selector:
+            - '1733125851003'
+            - type
+          id: 4f54ad7b-9656-4e6f-b54a-29970bb1712d
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 222
+      id: '1733125950689'
+      position:
+        x: 385.8795942885886
+        y: 282
+      positionAbsolute:
+        x: 385.8795942885886
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-1.5-pro
+          provider: google
+        prompt_template:
+        - id: 2de8246c-8b68-41ca-8906-4ac3ab65c3e0
+          role: system
+          text: '<角色>
+
+            你是一个智能票据助手，拥有准确的中文文字解析能力。
+
+
+            <任务>
+
+            提取照片中的内容，准确地识别中文文字。
+
+
+            <格式>
+
+            标题分别为：项目名称、被审计单位、被审计单位移交人、被审计单位联系电话、签收单位、签收人、签收单位联系电话、文件名称、文件类型、文件份数、文件签收人、移交日期、签收日期
+
+            对于日期的格式，你需要按照YYYY/MM/DD的格式输出。
+
+
+            <约束>
+
+            你需要在输出中写清楚标题，不能输出规定内容之外的废话。如果有看不清楚的内容则只写标题内容留空。'
+        selected: false
+        title: 凭证签收单
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1733125851003'
+            - file
+          enabled: true
+      height: 98
+      id: '1733127061659'
+      position:
+        x: 752
+        y: 228
+      positionAbsolute:
+        x: 752
+        y: 228
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-1.5-pro
+          provider: google
+        prompt_template:
+        - id: 12f183a1-0736-4f6b-bc74-37417d745d36
+          role: system
+          text: '<角色>
+
+            你是一个智能票据助手，拥有准确的中文文字解析能力。
+
+
+            <任务>
+
+            提取照片中的内容，准确地识别中文文字。
+
+
+            <格式>
+
+            标题分别为：开票日期、出发时间、始发站、终点站、车次、票价、身份证号、姓名
+
+            对于日期的格式，你需要按照unix时间的格式输出。
+
+
+            <约束>
+
+            你需要在输出中写清楚标题，不能输出规定内容之外的废话。如果有看不清楚的内容则只写标题内容留空。'
+        selected: false
+        title: 火车票
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1733125851003'
+            - file
+          enabled: true
+      height: 98
+      id: '1733127091564'
+      position:
+        x: 752
+        y: 365
+      positionAbsolute:
+        x: 752
+        y: 365
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-1.5-pro
+          provider: google
+        prompt_template:
+        - id: 0d65238c-bacd-453c-a5d2-99ab64656a84
+          role: system
+          text: '<角色>
+
+            你是一个智能票据助手，拥有准确的中文文字解析能力。
+
+
+            <任务>
+
+            提取照片中的内容，准确地识别中文文字。
+
+
+            <格式>
+
+            标题分别为：发票号码、开票日期、购买方信息名称、购买方统一社会信用代码/纳税人识别号、销售方信息名称、销售方统一社会信用代码/纳税人识别号、项目名称、规格型号、单位、数量、单价、金额、税率/征收率、税额、合计、价税合计（大写）、价税合计（小写）、备注 
+
+            对于日期的格式，你需要按照unix时间的格式输出。
+
+
+            <约束>
+
+            你需要在输出中写清楚标题，不能输出规定内容之外的废话。如果有看不清楚的内容则只写标题内容留空。'
+        selected: false
+        title: 电子发票
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1733125851003'
+            - file
+          enabled: true
+      height: 98
+      id: '1733127532425'
+      position:
+        x: 752
+        y: 502
+      positionAbsolute:
+        x: 752
+        y: 502
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        parameters:
+        - description: 出发时间
+          name: DepartureDate
+          required: false
+          type: string
+        - description: 始发站
+          name: Departure
+          required: false
+          type: string
+        - description: 终点站
+          name: Destination
+          required: false
+          type: string
+        - description: 车次
+          name: TrainNum
+          required: false
+          type: string
+        - description: 票价
+          name: Price
+          required: false
+          type: number
+        - description: 身份证号
+          name: ID
+          required: false
+          type: string
+        - description: 姓名
+          name: Name
+          required: false
+          type: string
+        query:
+        - '1733127091564'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 火车票参数提取器
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1733133317808'
+      position:
+        x: 1056
+        y: 365
+      positionAbsolute:
+        x: 1056
+        y: 365
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        parameters:
+        - description: 发票号码
+          name: ReceiptNum
+          required: false
+          type: string
+        - description: 开票日期
+          name: IssueDate
+          required: false
+          type: string
+        - description: 购买方信息名称
+          name: Buyer
+          required: false
+          type: string
+        - description: 购买方统一社会信用代码/纳税人识别号
+          name: BuyerID
+          required: false
+          type: string
+        - description: 销售方信息名称
+          name: Seller
+          required: false
+          type: string
+        - description: 销售方统一社会信用代码/纳税人识别号
+          name: SellerID
+          required: false
+          type: string
+        - description: 项目名称
+          name: Name
+          required: false
+          type: string
+        - description: 规格型号
+          name: Type
+          required: false
+          type: string
+        - description: 单位
+          name: Unit
+          required: false
+          type: string
+        - description: 数量
+          name: Num
+          required: false
+          type: string
+        - description: 单价
+          name: SinglePrice
+          required: false
+          type: string
+        - description: 金额
+          name: Price
+          required: false
+          type: string
+        - description: 税率/征收率
+          name: TaxRate
+          required: false
+          type: string
+        - description: 税额
+          name: Tax
+          required: false
+          type: string
+        - description: 合计
+          name: Sum
+          required: false
+          type: string
+        - description: 价税合计（大写）
+          name: PriceSumCap
+          required: false
+          type: string
+        - description: 价税合计（小写）
+          name: PriceSum
+          required: false
+          type: string
+        - description: 备注 
+          name: Note
+          required: false
+          type: string
+        query:
+        - '1733127532425'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 电子发票参数提取器
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1733133345526'
+      position:
+        x: 1056
+        y: 502
+      positionAbsolute:
+        x: 1056
+        y: 502
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        parameters:
+        - description: 项目名称的值
+          name: ProjectName
+          required: false
+          type: string
+        - description: 被审计单位
+          name: AuditedEntity
+          required: false
+          type: string
+        - description: 被审计单位移交人的值
+          name: AuditedEntityPerson
+          required: false
+          type: string
+        - description: 被审计单位联系电话
+          name: AuditedEntityPhone
+          required: false
+          type: string
+        - description: 签收单位
+          name: ReceivingEntity
+          required: false
+          type: string
+        - description: 签收人
+          name: Recipient
+          required: false
+          type: string
+        - description: 签收单位联系电话
+          name: ReceivingEntityPhone
+          required: false
+          type: string
+        - description: 文件名称
+          name: FileName
+          required: false
+          type: string
+        - description: 文件类型
+          name: FileType
+          required: false
+          type: string
+        - description: 文件份数
+          name: FileNum
+          required: false
+          type: number
+        - description: 文件签收人
+          name: FileReceipient
+          required: false
+          type: string
+        - description: 移交日期，YYYY/MM/DD格式
+          name: HandOverDate
+          required: false
+          type: string
+        - description: 签收日期，YYYY/MM/DD格式
+          name: ReceivedDate
+          required: false
+          type: string
+        query:
+        - '1733127061659'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 凭证签收单参数提取器
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1733133362018'
+      position:
+        x: 1056
+        y: 228
+      positionAbsolute:
+        x: 1056
+        y: 228
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1733133362018'
+          - ProjectName
+          variable: ProjectName
+        - value_selector:
+          - '1733133362018'
+          - AuditedEntity
+          variable: AuditedEntity
+        - value_selector:
+          - '1733133362018'
+          - AuditedEntityPerson
+          variable: AuditedEntityPerson
+        - value_selector:
+          - '1733133362018'
+          - AuditedEntityPhone
+          variable: AuditedEntityPhone
+        - value_selector:
+          - '1733133362018'
+          - ReceivingEntity
+          variable: ReceivingEntity
+        - value_selector:
+          - '1733133362018'
+          - Recipient
+          variable: Recipient
+        - value_selector:
+          - '1733133362018'
+          - ReceivingEntityPhone
+          variable: ReceivingEntityPhone
+        - value_selector:
+          - '1733133362018'
+          - FileName
+          variable: FileName
+        - value_selector:
+          - '1733133362018'
+          - FileType
+          variable: FileType
+        - value_selector:
+          - '1733133362018'
+          - FileNum
+          variable: FileNum
+        - value_selector:
+          - '1733133362018'
+          - FileReceipient
+          variable: FileReceipient
+        - value_selector:
+          - '1733133362018'
+          - HandOverDate
+          variable: HandOverDate
+        - value_selector:
+          - '1733133362018'
+          - ReceivedDate
+          variable: ReceivedDate
+        selected: true
+        title: 凭证签收单结束
+        type: end
+      height: 402
+      id: '1733135108123'
+      position:
+        x: 1636.8035354990607
+        y: -75.8002953106679
+      positionAbsolute:
+        x: 1636.8035354990607
+        y: -75.8002953106679
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1733133317808'
+          - DepartureDate
+          variable: DepartureDate
+        - value_selector:
+          - '1733133317808'
+          - Departure
+          variable: Departure
+        - value_selector:
+          - '1733133317808'
+          - Destination
+          variable: Destination
+        - value_selector:
+          - '1733133317808'
+          - TrainNum
+          variable: TrainNum
+        - value_selector:
+          - '1733133317808'
+          - Price
+          variable: Price
+        - value_selector:
+          - '1733133317808'
+          - ID
+          variable: ID
+        - value_selector:
+          - '1733133317808'
+          - Name
+          variable: Name
+        selected: false
+        title: 火车票结束
+        type: end
+      height: 246
+      id: '1733135176476'
+      position:
+        x: 1636.8035354990607
+        y: 353.66886111992153
+      positionAbsolute:
+        x: 1636.8035354990607
+        y: 353.66886111992153
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1733133345526'
+          - ReceiptNum
+          variable: ReceiptNum
+        - value_selector:
+          - '1733133345526'
+          - IssueDate
+          variable: IssueDate
+        - value_selector:
+          - '1733133345526'
+          - Buyer
+          variable: Buyer
+        - value_selector:
+          - '1733133345526'
+          - BuyerID
+          variable: BuyerID
+        - value_selector:
+          - '1733133345526'
+          - Seller
+          variable: Seller
+        - value_selector:
+          - '1733133345526'
+          - SellerID
+          variable: SellerID
+        - value_selector:
+          - '1733133345526'
+          - Name
+          variable: Name
+        - value_selector:
+          - '1733133345526'
+          - Type
+          variable: Type
+        - value_selector:
+          - '1733133345526'
+          - Unit
+          variable: Unit
+        - value_selector:
+          - '1733133345526'
+          - Num
+          variable: Num
+        - value_selector:
+          - '1733133345526'
+          - SinglePrice
+          variable: SinglePrice
+        - value_selector:
+          - '1733133345526'
+          - Price
+          variable: Price
+        - value_selector:
+          - '1733133345526'
+          - TaxRate
+          variable: TaxRate
+        - value_selector:
+          - '1733133345526'
+          - Tax
+          variable: Tax
+        - value_selector:
+          - '1733133345526'
+          - Sum
+          variable: Sum
+        - value_selector:
+          - '1733133345526'
+          - PriceSumCap
+          variable: PriceSumCap
+        - value_selector:
+          - '1733133345526'
+          - PriceSum
+          variable: PriceSum
+        - value_selector:
+          - '1733133345526'
+          - Note
+          variable: Note
+        selected: false
+        title: 电子发票结束
+        type: end
+      height: 532
+      id: '1733135210816'
+      position:
+        x: 1631.9473331218842
+        y: 652.5422736924716
+      positionAbsolute:
+        x: 1631.9473331218842
+        y: 652.5422736924716
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -573.4304138133152
+      y: 250.2660443026977
+      zoom: 0.8259172709066156

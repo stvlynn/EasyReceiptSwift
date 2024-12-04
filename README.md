@@ -14,6 +14,7 @@
 
 ## Backend
 
+[Deploy to Dify](/EasyReceiptDify.yml)
 
 ## Sponsoring
 
