@@ -4,7 +4,11 @@
 
 这是一个可以扫描收据图片并同步至飞书文档的 iOS 应用。使用 Dify 对多模态模型进行编排。
 
-![](/img/IMG_3768.PNG) ![](/img/IMG_3770.PNG) ![](/img/IMG_3771.PNG)
+<div style="display:flex; flex-direction:row; align-items:center; justify-content:space-around">
+    <img src="./img/IMG_3768.PNG" alt="EasyReceipt" width="200" height="400">
+    <img src="./img/IMG_3770.PNG" alt="EasyReceipt" width="200" height="400">
+    <img src="./img/IMG_3771.PNG" alt="EasyReceipt" width="200" height="400">
+</div>
 
 ## Todo
 
