@@ -24,10 +24,6 @@
 
 ETH: 0xEbf67cd24fa23fde69843cA4119cE946d8c231F5
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=stvlynn/twi.am&type=Date)](https://star-history.com/#stvlynn/twi.am&Date)
-
 ## License
 
 [AGPL-3.0](./LICENSE)
