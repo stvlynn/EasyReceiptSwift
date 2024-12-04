@@ -49,78 +49,48 @@ class DeliveryReceiptViewController: UIViewController {
         // 图片预览
         imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .secondarySystemBackground
-        imageView.clipsToBounds = true
+        imageView.backgroundColor = .systemGray6
         imageView.layer.cornerRadius = 12
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
-        imageView.addGestureRecognizer(tapGesture)
         contentView.addSubview(imageView)
         
-        // 拍照按钮
-        captureButton = UIButton(configuration: .filled())
-        captureButton.configuration?.cornerStyle = .capsule
-        captureButton.configuration?.image = UIImage(systemName: "camera.fill")
-        captureButton.configuration?.imagePadding = 8
-        captureButton.addTarget(self, action: #selector(captureButtonTapped), for: .touchUpInside)
+        // 设置按钮样式
+        captureButton = UIButton(type: .system)
+        captureButton.setTitle("选择图片", for: .normal)
+        captureButton.backgroundColor = .systemBlue
+        captureButton.setTitleColor(.white, for: .normal)
+        captureButton.layer.cornerRadius = 12
+        captureButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         captureButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(captureButton)
+        contentView.addSubview(captureButton)
         
-        // 提交按钮（初始隐藏）
-        submitButton = UIButton(configuration: .filled())
-        submitButton.configuration?.cornerStyle = .capsule
-        submitButton.configuration?.image = UIImage(systemName: "checkmark.circle.fill")
-        submitButton.configuration?.baseBackgroundColor = .systemGreen
-        submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+        // 提交按钮
+        submitButton = UIButton(type: .system)
+        submitButton.setTitle("提交", for: .normal)
+        submitButton.backgroundColor = .systemGreen
+        submitButton.setTitleColor(.white, for: .normal)
+        submitButton.layer.cornerRadius = 12
+        submitButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         submitButton.isHidden = true
-        view.addSubview(submitButton)
+        contentView.addSubview(submitButton)
         
-        // 加载指示器
+        // Loading indicator
         loadingIndicator = UIActivityIndicatorView(style: .large)
-        loadingIndicator.hidesWhenStopped = true
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loadingIndicator)
+        loadingIndicator.hidesWhenStopped = true
+        contentView.addSubview(loadingIndicator)
         
-        // 结果视图（初始隐藏）
+        // 结果视图
         resultView = UIStackView()
         resultView.axis = .vertical
-        resultView.spacing = 10
+        resultView.spacing = 16
         resultView.isHidden = true
         resultView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(resultView)
         
-        // 创建表单字段
-        projectNameField = createTextField(placeholder: "项目名称")
-        auditedEntityField = createTextField(placeholder: "被审计单位")
-        auditedEntityPersonField = createTextField(placeholder: "被审计单位移交人")
-        auditedEntityPhoneField = createTextField(placeholder: "被审计单位联系电话")
-        receivingEntityField = createTextField(placeholder: "签收单位")
-        recipientField = createTextField(placeholder: "签收人")
-        receivingPhoneField = createTextField(placeholder: "签收单位联系电话")
-        fileNameField = createTextField(placeholder: "文件名称")
-        fileTypeField = createTextField(placeholder: "文件类型")
-        fileNumField = createTextField(placeholder: "文件份数")
-        fileReceipientField = createTextField(placeholder: "文件签收人")
-        handOverDateField = createTextField(placeholder: "移交日期")
-        receivedDateField = createTextField(placeholder: "签收日期")
-        
-        [
-            createLabeledField(label: "项目名称", field: projectNameField),
-            createLabeledField(label: "被审计单位", field: auditedEntityField),
-            createLabeledField(label: "被审计单位移交人", field: auditedEntityPersonField),
-            createLabeledField(label: "被审计单位联系电话", field: auditedEntityPhoneField),
-            createLabeledField(label: "签收单位", field: receivingEntityField),
-            createLabeledField(label: "签收人", field: recipientField),
-            createLabeledField(label: "签收单位联系电话", field: receivingPhoneField),
-            createLabeledField(label: "文件名称", field: fileNameField),
-            createLabeledField(label: "文件类型", field: fileTypeField),
-            createLabeledField(label: "文件份数", field: fileNumField),
-            createLabeledField(label: "文件签收人", field: fileReceipientField),
-            createLabeledField(label: "移交日期", field: handOverDateField),
-            createLabeledField(label: "签收日期", field: receivedDateField)
-        ].forEach { resultView.addArrangedSubview($0) }
+        setupInputFields()
         
         // 设置约束
         NSLayoutConstraint.activate([
@@ -147,8 +117,8 @@ class DeliveryReceiptViewController: UIViewController {
             
             captureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             captureButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            captureButton.widthAnchor.constraint(equalToConstant: 60),
-            captureButton.heightAnchor.constraint(equalToConstant: 60),
+            captureButton.widthAnchor.constraint(equalToConstant: 120),
+            captureButton.heightAnchor.constraint(equalToConstant: 44),
             
             submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             submitButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
@@ -158,6 +128,80 @@ class DeliveryReceiptViewController: UIViewController {
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+    
+    private func setupInputFields() {
+        // 创建所有输入字段
+        projectNameField = createStyledTextField(placeholder: "项目名称")
+        auditedEntityField = createStyledTextField(placeholder: "被审计单位")
+        auditedEntityPersonField = createStyledTextField(placeholder: "被审计单位移交人")
+        auditedEntityPhoneField = createStyledTextField(placeholder: "被审计单位联系电话")
+        receivingEntityField = createStyledTextField(placeholder: "签收单位")
+        recipientField = createStyledTextField(placeholder: "签收人")
+        receivingPhoneField = createStyledTextField(placeholder: "签收单位联系电话")
+        fileNameField = createStyledTextField(placeholder: "文件名称")
+        fileTypeField = createStyledTextField(placeholder: "文件类型")
+        fileNumField = createStyledTextField(placeholder: "文件份数")
+        fileReceipientField = createStyledTextField(placeholder: "文件签收人")
+        handOverDateField = createStyledTextField(placeholder: "移交日期")
+        receivedDateField = createStyledTextField(placeholder: "签收日期")
+        
+        // 将字段添加到结果视图
+        [
+            projectNameField, auditedEntityField, auditedEntityPersonField,
+            auditedEntityPhoneField, receivingEntityField, recipientField,
+            receivingPhoneField, fileNameField, fileTypeField, fileNumField,
+            fileReceipientField, handOverDateField, receivedDateField
+        ].forEach { field in
+            let container = createFieldContainer(for: field)
+            resultView.addArrangedSubview(container)
+        }
+    }
+    
+    private func createStyledTextField(placeholder: String) -> UITextField {
+        let textField = UITextField()
+        textField.placeholder = placeholder
+        textField.font = .systemFont(ofSize: 17)
+        textField.backgroundColor = .systemBackground
+        textField.layer.cornerRadius = 10
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.systemGray4.cgColor
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: textField.frame.height))
+        textField.leftViewMode = .always
+        textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: textField.frame.height))
+        textField.rightViewMode = .always
+        return textField
+    }
+    
+    private func createFieldContainer(for textField: UITextField) -> UIView {
+        let container = UIView()
+        container.backgroundColor = .systemGray6
+        container.layer.cornerRadius = 12
+        
+        let label = UILabel()
+        label.text = textField.placeholder
+        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .secondaryLabel
+        
+        container.addSubview(label)
+        container.addSubview(textField)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: container.topAnchor, constant: 8),
+            label.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
+            label.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -12),
+            
+            textField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 4),
+            textField.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
+            textField.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -12),
+            textField.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -12),
+            textField.heightAnchor.constraint(equalToConstant: 44)
+        ])
+        
+        return container
     }
     
     @objc private func imageViewTapped() {
@@ -189,27 +233,6 @@ class DeliveryReceiptViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    private func createTextField(placeholder: String) -> UITextField {
-        let field = UITextField()
-        field.borderStyle = .roundedRect
-        field.placeholder = placeholder
-        return field
-    }
-    
-    private func createLabeledField(label: String, field: UITextField) -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 4
-        
-        let labelView = UILabel()
-        labelView.text = label
-        labelView.font = .preferredFont(forTextStyle: .caption1)
-        
-        stack.addArrangedSubview(labelView)
-        stack.addArrangedSubview(field)
-        return stack
     }
     
     @objc private func captureButtonTapped() {
