@@ -12,6 +12,7 @@
 		7C189F173ED3B366EC6612BC /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C0B01417612A71AF7B0B88 /* MainTabBarController.swift */; };
 		ABEA116DA193C4D928C9663A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2401392EF2B28CF3ABDE06 /* SettingsViewController.swift */; };
 		AEFBADF8A8B3F7102F825D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5E02D933FA351ED7E4E458 /* AppDelegate.swift */; };
+		B6C0526B51B3EB6EED4652A9 /* TrainTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC57DF51F157F2C78D4F7B /* TrainTicketViewController.swift */; };
 		B8632CA23925EECAF3137386 /* FeishuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26927E2440D2EA4F542486C /* FeishuService.swift */; };
 		BBE391F210D4BBE25417DEBF /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D70FECBC97CF04BB0CAB6 /* ScanViewController.swift */; };
 		EC0FC80708E7B59C22B12113 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6308DCA93EEAB5976FB8B8BC /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		2537AD899429FA556C222BA5 /* EasyReceiptSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyReceiptSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CCC57DF51F157F2C78D4F7B /* TrainTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTicketViewController.swift; sourceTree = "<group>"; };
 		51C0B01417612A71AF7B0B88 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		6308DCA93EEAB5976FB8B8BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9007A82441B42890AF4AFCE6 /* DeliveryReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryReceiptViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				A64D70FECBC97CF04BB0CAB6 /* ScanViewController.swift */,
 				6308DCA93EEAB5976FB8B8BC /* SceneDelegate.swift */,
 				CA2401392EF2B28CF3ABDE06 /* SettingsViewController.swift */,
+				3CCC57DF51F157F2C78D4F7B /* TrainTicketViewController.swift */,
 				45CD52DAA18C8449EBAE64D0 /* Services */,
 			);
 			path = EasyReceiptSwift;
@@ -143,6 +146,7 @@
 				BBE391F210D4BBE25417DEBF /* ScanViewController.swift in Sources */,
 				EC0FC80708E7B59C22B12113 /* SceneDelegate.swift in Sources */,
 				ABEA116DA193C4D928C9663A /* SettingsViewController.swift in Sources */,
+				B6C0526B51B3EB6EED4652A9 /* TrainTicketViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +240,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.easyreceiptswift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.steven.easyreceiptswift;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -256,7 +260,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.easyreceiptswift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.steven.easyreceiptswift;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				TARGETED_DEVICE_FAMILY = "1,2";

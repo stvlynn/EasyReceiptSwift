@@ -18,6 +18,8 @@
 
 - [ ] 上架 TestFlight
 
+- [ ] 电子发票 - 前端
+
 ## Usage
 
 0. 从 TestFlight 安装

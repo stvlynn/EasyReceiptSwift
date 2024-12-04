@@ -1,31 +1,25 @@
 import UIKit
 import PhotosUI
 
-class DeliveryReceiptViewController: UIViewController {
+class TrainTicketViewController: UIViewController {
     private var imageView: UIImageView!
     private var captureButton: UIButton!
     private var submitButton: UIButton!
     private var loadingIndicator: UIActivityIndicatorView!
     private var resultView: UIStackView!
     private var selectedImage: UIImage?
-    private var outputs: ReceiptOutputs?
+    private var outputs: TrainTicketOutputs?
     private var scrollView: UIScrollView!
     private var contentView: UIView!
     
     // 表单字段
-    private var projectNameField: UITextField!          // 项目名称
-    private var auditedEntityField: UITextField!        // 被审计单位
-    private var auditedEntityPersonField: UITextField!  // 被审计单位移交人
-    private var auditedEntityPhoneField: UITextField!   // 被审计单位联系电话
-    private var receivingEntityField: UITextField!      // 签收单位
-    private var recipientField: UITextField!            // 签收人
-    private var receivingPhoneField: UITextField!       // 签收单位联系电话
-    private var fileNameField: UITextField!             // 文件名称
-    private var fileTypeField: UITextField!             // 文件类型
-    private var fileNumField: UITextField!              // 文件份数
-    private var fileReceipientField: UITextField!       // 文件签收人
-    private var handOverDateField: UITextField!         // 移交日期
-    private var receivedDateField: UITextField!         // 签收日期
+    private var trainNumField: UITextField!          // 车次
+    private var departureDateField: UITextField!    // 出发日期
+    private var departureField: UITextField!        // 始发站
+    private var destinationField: UITextField!      // 终点站
+    private var priceField: UITextField!            // 票价
+    private var nameField: UITextField!             // 姓名
+    private var idField: UITextField!               // 身份证号
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +27,7 @@ class DeliveryReceiptViewController: UIViewController {
     }
     
     private func setupUI() {
-        title = "签收单识别"
+        title = "火车票识别"
         view.backgroundColor = .systemBackground
         
         // 创建滚动视图
@@ -92,34 +86,22 @@ class DeliveryReceiptViewController: UIViewController {
         contentView.addSubview(resultView)
         
         // 创建表单字段
-        projectNameField = createTextField(placeholder: "项目名称")
-        auditedEntityField = createTextField(placeholder: "被审计单位")
-        auditedEntityPersonField = createTextField(placeholder: "被审计单位移交人")
-        auditedEntityPhoneField = createTextField(placeholder: "被审计单位联系电话")
-        receivingEntityField = createTextField(placeholder: "签收单位")
-        recipientField = createTextField(placeholder: "签收人")
-        receivingPhoneField = createTextField(placeholder: "签收单位联系电话")
-        fileNameField = createTextField(placeholder: "文件名称")
-        fileTypeField = createTextField(placeholder: "文件类型")
-        fileNumField = createTextField(placeholder: "文件份数")
-        fileReceipientField = createTextField(placeholder: "文件签收人")
-        handOverDateField = createTextField(placeholder: "移交日期")
-        receivedDateField = createTextField(placeholder: "签收日期")
+        trainNumField = createTextField(placeholder: "车次")
+        departureDateField = createTextField(placeholder: "出发日期")
+        departureField = createTextField(placeholder: "始发站")
+        destinationField = createTextField(placeholder: "终点站")
+        priceField = createTextField(placeholder: "票价")
+        nameField = createTextField(placeholder: "姓名")
+        idField = createTextField(placeholder: "身份证号")
         
         [
-            createLabeledField(label: "项目名称", field: projectNameField),
-            createLabeledField(label: "被审计单位", field: auditedEntityField),
-            createLabeledField(label: "被审计单位移交人", field: auditedEntityPersonField),
-            createLabeledField(label: "被审计单位联系电话", field: auditedEntityPhoneField),
-            createLabeledField(label: "签收单位", field: receivingEntityField),
-            createLabeledField(label: "签收人", field: recipientField),
-            createLabeledField(label: "签收单位联系电话", field: receivingPhoneField),
-            createLabeledField(label: "文件名称", field: fileNameField),
-            createLabeledField(label: "文件类型", field: fileTypeField),
-            createLabeledField(label: "文件份数", field: fileNumField),
-            createLabeledField(label: "文件签收人", field: fileReceipientField),
-            createLabeledField(label: "移交日期", field: handOverDateField),
-            createLabeledField(label: "签收日期", field: receivedDateField)
+            createLabeledField(label: "车次", field: trainNumField),
+            createLabeledField(label: "出发日期", field: departureDateField),
+            createLabeledField(label: "始发站", field: departureField),
+            createLabeledField(label: "终点站", field: destinationField),
+            createLabeledField(label: "票价", field: priceField),
+            createLabeledField(label: "姓名", field: nameField),
+            createLabeledField(label: "身份证号", field: idField)
         ].forEach { resultView.addArrangedSubview($0) }
         
         // 设置约束
@@ -163,53 +145,9 @@ class DeliveryReceiptViewController: UIViewController {
     @objc private func imageViewTapped() {
         guard let image = imageView.image else { return }
         
-        let fullScreenVC = FullScreenImageViewController(image: image)
+        let fullScreenVC = TrainTicketFullScreenImageViewController(image: image)
         fullScreenVC.modalPresentationStyle = .fullScreen
         present(fullScreenVC, animated: true)
-    }
-    
-    @objc private func submitButtonTapped() {
-        loadingIndicator.startAnimating()
-        submitButton.isEnabled = false
-        
-        Task {
-            do {
-                try await FeishuService.shared.submitReceipt(outputs!)
-                
-                // 提交成功后返回上一页
-                DispatchQueue.main.async { [weak self] in
-                    self?.loadingIndicator.stopAnimating()
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            } catch {
-                DispatchQueue.main.async { [weak self] in
-                    self?.loadingIndicator.stopAnimating()
-                    self?.submitButton.isEnabled = true
-                    self?.showError(error)
-                }
-            }
-        }
-    }
-    
-    private func createTextField(placeholder: String) -> UITextField {
-        let field = UITextField()
-        field.borderStyle = .roundedRect
-        field.placeholder = placeholder
-        return field
-    }
-    
-    private func createLabeledField(label: String, field: UITextField) -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 4
-        
-        let labelView = UILabel()
-        labelView.text = label
-        labelView.font = .preferredFont(forTextStyle: .caption1)
-        
-        stack.addArrangedSubview(labelView)
-        stack.addArrangedSubview(field)
-        return stack
     }
     
     @objc private func captureButtonTapped() {
@@ -259,9 +197,9 @@ class DeliveryReceiptViewController: UIViewController {
                     throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to convert image to data"])
                 }
                 
-                let filename = "receipt_\(Int(Date().timeIntervalSince1970)).jpg"
+                let filename = "train_ticket_\(Int(Date().timeIntervalSince1970)).jpg"
                 let fileId = try await DifyService.shared.uploadImage(imageData, filename: filename)
-                let response = try await DifyService.shared.processDeliveryReceipt(fileId: fileId)
+                let response = try await DifyService.shared.processTrainTicket(fileId: fileId)
                 
                 await MainActor.run {
                     self.handleResponse(response.data.outputs)
@@ -279,44 +217,47 @@ class DeliveryReceiptViewController: UIViewController {
         }
     }
     
-    private func handleResponse(_ outputs: ReceiptOutputs) {
+    private func handleResponse(_ outputs: TrainTicketOutputs) {
         self.outputs = outputs
         resultView.isHidden = false
         
         // 设置字符串类型的字段
-        projectNameField.text = outputs.ProjectName
-        auditedEntityField.text = outputs.AuditedEntity
-        auditedEntityPersonField.text = outputs.AuditedEntityPerson
-        auditedEntityPhoneField.text = outputs.AuditedEntityPhone
-        receivingEntityField.text = outputs.ReceivingEntity
-        recipientField.text = outputs.Recipient
-        receivingPhoneField.text = outputs.ReceivingEntityPhone
-        fileNameField.text = outputs.FileName
-        fileTypeField.text = outputs.FileType
-        fileReceipientField.text = outputs.FileReceipient
+        trainNumField.text = outputs.TrainNum
+        departureDateField.text = outputs.DepartureDate
+        departureField.text = outputs.Departure
+        destinationField.text = outputs.Destination
+        nameField.text = outputs.Name
+        idField.text = outputs.ID
         
         // 设置数字类型的字段
-        fileNumField.text = String(outputs.FileNum)
-        
-        // 设置日期字段（已确保格式为YYYY/MM/DD）
-        handOverDateField.text = outputs.HandOverDate
-        receivedDateField.text = outputs.ReceivedDate
+        priceField.text = String(outputs.Price)
         
         // 更新UI状态
         captureButton.isHidden = true
         submitButton.isHidden = false
     }
     
-    private func submitToFeishu(outputs: ReceiptOutputs) {
-        // 检查是否配置了飞书API
-        guard let apiKey = UserDefaults.standard.string(forKey: "FeishuAPIKey"),
-              let appToken = UserDefaults.standard.string(forKey: "FeishuAppToken"),
-              let tableId = UserDefaults.standard.string(forKey: "FeishuDeliveryTableId") else {
-            showAlert(title: "错误", message: "请先在设置中配置飞书API信息")
-            return
+    @objc private func submitButtonTapped() {
+        loadingIndicator.startAnimating()
+        submitButton.isEnabled = false
+        
+        Task {
+            do {
+                try await FeishuService.shared.submitTrainTicket(outputs!)
+                
+                // 提交成功后返回上一页
+                DispatchQueue.main.async { [weak self] in
+                    self?.loadingIndicator.stopAnimating()
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            } catch {
+                DispatchQueue.main.async { [weak self] in
+                    self?.loadingIndicator.stopAnimating()
+                    self?.submitButton.isEnabled = true
+                    self?.showError(error)
+                }
+            }
         }
-
-        // ...其他代码
     }
     
     private func showError(_ error: Error) {
@@ -351,15 +292,32 @@ class DeliveryReceiptViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+    private func createTextField(placeholder: String) -> UITextField {
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.placeholder = placeholder
+        textField.returnKeyType = .done
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }
+    
+    private func createLabeledField(label: String, field: UITextField) -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 4
+        
+        let labelView = UILabel()
+        labelView.text = label
+        labelView.font = .preferredFont(forTextStyle: .caption1)
+        
+        stack.addArrangedSubview(labelView)
+        stack.addArrangedSubview(field)
+        return stack
     }
 }
 
 // MARK: - UIImagePickerControllerDelegate
-extension DeliveryReceiptViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension TrainTicketViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         
@@ -370,7 +328,7 @@ extension DeliveryReceiptViewController: UIImagePickerControllerDelegate, UINavi
 }
 
 // MARK: - PHPickerViewControllerDelegate
-extension DeliveryReceiptViewController: PHPickerViewControllerDelegate {
+extension TrainTicketViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         
@@ -394,8 +352,8 @@ extension DeliveryReceiptViewController: PHPickerViewControllerDelegate {
     }
 }
 
-// MARK: - FullScreenImageViewController
-class FullScreenImageViewController: UIViewController {
+// MARK: - TrainTicketFullScreenImageViewController
+class TrainTicketFullScreenImageViewController: UIViewController {
     private let imageView: UIImageView
     
     init(image: UIImage) {
@@ -417,10 +375,9 @@ class FullScreenImageViewController: UIViewController {
         view.addSubview(imageView)
         
         let closeButton = UIButton(type: .system)
-        closeButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-        closeButton.tintColor = .white
+        closeButton.setTitle("关闭", for: .normal)
+        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
         view.addSubview(closeButton)
         
         NSLayoutConstraint.activate([
@@ -429,14 +386,12 @@ class FullScreenImageViewController: UIViewController {
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            closeButton.widthAnchor.constraint(equalToConstant: 32),
-            closeButton.heightAnchor.constraint(equalToConstant: 32)
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
     }
     
-    @objc private func closeTapped() {
+    @objc private func closeButtonTapped() {
         dismiss(animated: true)
     }
 }

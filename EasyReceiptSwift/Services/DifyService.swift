@@ -1,8 +1,15 @@
 import Foundation
+import UIKit
+
+enum DifyError: Error {
+    case invalidDateFormat(details: String)
+    case noAnswer
+    case invalidResponse
+    case networkError(Error)
+}
 
 class DifyService {
     static let shared = DifyService()
-    
     private init() {}
     
     var baseURL: String {
@@ -28,7 +35,6 @@ class DifyService {
         body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
         body.append(imageData)
         body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-        
         request.httpBody = body
         
         let (data, _) = try await URLSession.shared.data(for: request)
@@ -63,9 +69,41 @@ class DifyService {
         return try JSONDecoder().decode(DeliveryReceiptResponse.self, from: data)
     }
     
+    func processTrainTicket(fileId: String) async throws -> DifyResponse<TrainTicketOutputs> {
+        let url = URL(string: baseURL.trimmingCharacters(in: ["/"]) + "/v1/workflows/run")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let requestBody = WorkflowRequest(
+            inputs: WorkflowInputs(
+                file: FileInput(
+                    transfer_method: "local_file",
+                    upload_file_id: fileId,
+                    type: "image"
+                ),
+                type: "TrainTicket"
+            ),
+            response_mode: "blocking",
+            user: "abc-123"
+        )
+        
+        let encoder = JSONEncoder()
+        request.httpBody = try encoder.encode(requestBody)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw DifyError.invalidResponse
+        }
+        
+        return try JSONDecoder().decode(DifyResponse<TrainTicketOutputs>.self, from: data)
+    }
+    
     func parseResponse(_ data: Data) throws -> ReceiptOutputs {
         let decoder = JSONDecoder()
-        let response = try decoder.decode(DifyResponse.self, from: data)
+        let response = try decoder.decode(DifyResponse_.self, from: data)
         
         guard let answer = response.answer else {
             throw DifyError.noAnswer
@@ -81,12 +119,34 @@ class DifyService {
         
         // 验证移交日期格式
         if dateFormatter.date(from: outputs.HandOverDate) == nil {
-            throw DifyError.invalidDateFormat("HandOverDate格式错误，应为YYYY/MM/DD")
+            throw DifyError.invalidDateFormat(details: "HandOverDate格式错误，应为YYYY/MM/DD")
         }
         
         // 验证签收日期格式
         if dateFormatter.date(from: outputs.ReceivedDate) == nil {
-            throw DifyError.invalidDateFormat("ReceivedDate格式错误，应为YYYY/MM/DD")
+            throw DifyError.invalidDateFormat(details: "ReceivedDate格式错误，应为YYYY/MM/DD")
+        }
+        
+        return outputs
+    }
+    
+    func parseOutputs(_ answer: String) throws -> ReceiptOutputs {
+        let decoder = JSONDecoder()
+        let jsonData = answer.data(using: .utf8)!
+        let outputs = try decoder.decode(ReceiptOutputs.self, from: jsonData)
+        
+        // 验证日期格式
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        
+        // 验证移交日期格式
+        if dateFormatter.date(from: outputs.HandOverDate) == nil {
+            throw DifyError.invalidDateFormat(details: "HandOverDate格式错误，应为YYYY/MM/DD")
+        }
+        
+        // 验证签收日期格式
+        if dateFormatter.date(from: outputs.ReceivedDate) == nil {
+            throw DifyError.invalidDateFormat(details: "ReceivedDate格式错误，应为YYYY/MM/DD")
         }
         
         return outputs
@@ -132,14 +192,14 @@ struct FileInput: Codable {
 struct DeliveryReceiptResponse: Codable {
     let task_id: String
     let workflow_run_id: String
-    let data: WorkflowData
+    let data: WorkflowData<ReceiptOutputs>
 }
 
-struct WorkflowData: Codable {
+struct WorkflowData<T: Codable>: Codable {
     let id: String
     let workflow_id: String
     let status: String
-    let outputs: ReceiptOutputs
+    let outputs: T
     let error: String?
     let elapsed_time: Double
     let total_tokens: Int
@@ -164,13 +224,22 @@ struct ReceiptOutputs: Codable {
     let ReceivedDate: String       // 签收日期 (String, YYYY/MM/DD)
 }
 
-struct DifyResponse: Codable {
-    let answer: String?
+struct DifyResponse<T: Codable>: Codable {
+    let task_id: String
+    let workflow_run_id: String
+    let data: WorkflowData<T>
 }
 
-enum DifyError: Error {
-    case invalidResponse
-    case noAnswer
-    case invalidDateFormat(String)
-    case networkError(Error)
+struct TrainTicketOutputs: Codable {
+    let TrainNum: String
+    let DepartureDate: String
+    let Departure: String
+    let Destination: String
+    let Price: Int
+    let ID: String
+    let Name: String
+}
+
+struct DifyResponse_: Codable {
+    let answer: String?
 }

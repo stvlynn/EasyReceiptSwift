@@ -15,7 +15,9 @@ class SettingsViewController: UIViewController {
          "Dify API Key": "DifyAPIKey"],
         ["飞书 API Key": "FeishuAPIKey",
          "飞书 App Token": "FeishuAppToken",
-         "飞书 Table ID": "FeishuTableId"]
+         "签收单 Table ID": "FeishuDeliveryTableId",
+         "火车票 Table ID": "FeishuTrainTableId",
+         "电子发票 Table ID": "FeishuInvoiceTableId"]
     ]
     
     override func viewDidLoad() {

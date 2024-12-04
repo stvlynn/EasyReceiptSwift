@@ -59,7 +59,8 @@ class ScanViewController: UIViewController {
         case invoiceButton:
             print("电子发票扫描")
         case trainTicketButton:
-            print("火车票扫描")
+            let trainTicketVC = TrainTicketViewController()
+            navigationController?.pushViewController(trainTicketVC, animated: true)
         default:
             break
         }
