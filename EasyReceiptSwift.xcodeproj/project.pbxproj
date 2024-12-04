@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		499F1FA76DDCF0B2E90B1FAC /* DifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B14E79FF74CA8C69D58E46 /* DifyService.swift */; };
+		6BC79C81CBAB222C5D53F652 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3453B67FC9807E38299FB4C /* LaunchScreen.storyboard */; };
+		7C189F173ED3B366EC6612BC /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C0B01417612A71AF7B0B88 /* MainTabBarController.swift */; };
+		ABEA116DA193C4D928C9663A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2401392EF2B28CF3ABDE06 /* SettingsViewController.swift */; };
+		AEFBADF8A8B3F7102F825D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5E02D933FA351ED7E4E458 /* AppDelegate.swift */; };
+		B8632CA23925EECAF3137386 /* FeishuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26927E2440D2EA4F542486C /* FeishuService.swift */; };
+		BBE391F210D4BBE25417DEBF /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D70FECBC97CF04BB0CAB6 /* ScanViewController.swift */; };
+		EC0FC80708E7B59C22B12113 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6308DCA93EEAB5976FB8B8BC /* SceneDelegate.swift */; };
+		F549F426FD7E50CCE8E2B355 /* DeliveryReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007A82441B42890AF4AFCE6 /* DeliveryReceiptViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2537AD899429FA556C222BA5 /* EasyReceiptSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyReceiptSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		51C0B01417612A71AF7B0B88 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		6308DCA93EEAB5976FB8B8BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9007A82441B42890AF4AFCE6 /* DeliveryReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryReceiptViewController.swift; sourceTree = "<group>"; };
+		A3B14E79FF74CA8C69D58E46 /* DifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifyService.swift; sourceTree = "<group>"; };
+		A64D70FECBC97CF04BB0CAB6 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		C1985D1F0B65864590541FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C26927E2440D2EA4F542486C /* FeishuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeishuService.swift; sourceTree = "<group>"; };
+		CA2401392EF2B28CF3ABDE06 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F00700B3703B46CE0D2B4C3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF5E02D933FA351ED7E4E458 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		45CD52DAA18C8449EBAE64D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A3B14E79FF74CA8C69D58E46 /* DifyService.swift */,
+				C26927E2440D2EA4F542486C /* FeishuService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A0ED5BAE7642DB7CB24FECCE = {
+			isa = PBXGroup;
+			children = (
+				D92307E144108AC3B6A621A8 /* EasyReceiptSwift */,
+				B3FB3B149DB814BCD7925A00 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B3FB3B149DB814BCD7925A00 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2537AD899429FA556C222BA5 /* EasyReceiptSwift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D92307E144108AC3B6A621A8 /* EasyReceiptSwift */ = {
+			isa = PBXGroup;
+			children = (
+				FF5E02D933FA351ED7E4E458 /* AppDelegate.swift */,
+				9007A82441B42890AF4AFCE6 /* DeliveryReceiptViewController.swift */,
+				C1985D1F0B65864590541FB6 /* Info.plist */,
+				D3453B67FC9807E38299FB4C /* LaunchScreen.storyboard */,
+				51C0B01417612A71AF7B0B88 /* MainTabBarController.swift */,
+				A64D70FECBC97CF04BB0CAB6 /* ScanViewController.swift */,
+				6308DCA93EEAB5976FB8B8BC /* SceneDelegate.swift */,
+				CA2401392EF2B28CF3ABDE06 /* SettingsViewController.swift */,
+				45CD52DAA18C8449EBAE64D0 /* Services */,
+			);
+			path = EasyReceiptSwift;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		268E4A0D0B50009B994E12DF /* EasyReceiptSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E967094A87B75D5ED966D413 /* Build configuration list for PBXNativeTarget "EasyReceiptSwift" */;
+			buildPhases = (
+				A2C603495A1D9388614B45D2 /* Sources */,
+				AE15E413BD748CC11F06B4C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EasyReceiptSwift;
+			productName = EasyReceiptSwift;
+			productReference = 2537AD899429FA556C222BA5 /* EasyReceiptSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B7C91DC3F3B6C8FDBFA04E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 893E0CCDC1177E190BCD26E9 /* Build configuration list for PBXProject "EasyReceiptSwift" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A0ED5BAE7642DB7CB24FECCE;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				268E4A0D0B50009B994E12DF /* EasyReceiptSwift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AE15E413BD748CC11F06B4C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BC79C81CBAB222C5D53F652 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A2C603495A1D9388614B45D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEFBADF8A8B3F7102F825D34 /* AppDelegate.swift in Sources */,
+				F549F426FD7E50CCE8E2B355 /* DeliveryReceiptViewController.swift in Sources */,
+				499F1FA76DDCF0B2E90B1FAC /* DifyService.swift in Sources */,
+				B8632CA23925EECAF3137386 /* FeishuService.swift in Sources */,
+				7C189F173ED3B366EC6612BC /* MainTabBarController.swift in Sources */,
+				BBE391F210D4BBE25417DEBF /* ScanViewController.swift in Sources */,
+				EC0FC80708E7B59C22B12113 /* SceneDelegate.swift in Sources */,
+				ABEA116DA193C4D928C9663A /* SettingsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D3453B67FC9807E38299FB4C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F00700B3703B46CE0D2B4C3A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2AB56820F0311530DCE695DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3DC444FFCC4B005C159D644D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DWV268S6ZD;
+				INFOPLIST_FILE = EasyReceiptSwift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.easyreceiptswift;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		74CE1A2A8D81D45E3ADD8C8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DWV268S6ZD;
+				INFOPLIST_FILE = EasyReceiptSwift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.easyreceiptswift;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D6934AE9BD96E39741981C90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		893E0CCDC1177E190BCD26E9 /* Build configuration list for PBXProject "EasyReceiptSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AB56820F0311530DCE695DB /* Debug */,
+				D6934AE9BD96E39741981C90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E967094A87B75D5ED966D413 /* Build configuration list for PBXNativeTarget "EasyReceiptSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DC444FFCC4B005C159D644D /* Debug */,
+				74CE1A2A8D81D45E3ADD8C8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2B7C91DC3F3B6C8FDBFA04E8 /* Project object */;
+}

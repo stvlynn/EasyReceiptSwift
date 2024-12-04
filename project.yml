@@ -1,0 +1,45 @@
+name: EasyReceiptSwift
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: 15.0
+
+targets:
+  EasyReceiptSwift:
+    type: application
+    platform: iOS
+    sources: 
+      - path: EasyReceiptSwift
+    settings:
+      base:
+        INFOPLIST_FILE: EasyReceiptSwift/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.easyreceiptswift
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+        Release:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: RELEASE
+    info:
+      path: EasyReceiptSwift/Info.plist
+      properties:
+        LSRequiresIPhoneOS: true
+        UILaunchStoryboardName: LaunchScreen
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default Configuration
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        CFBundleDisplayName: "易收据"
+        CFBundleName: EasyReceiptSwift
+        CFBundlePackageType: APPL
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSCameraUsageDescription: "需要使用相机来拍摄收据"
+        NSPhotoLibraryUsageDescription: "需要访问照片库来选择收据图片"
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
