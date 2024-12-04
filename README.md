@@ -4,11 +4,30 @@
 
 这是一个可以扫描收据图片并同步至飞书文档的 iOS 应用。使用 Dify 对多模态模型进行编排。
 
+![](/img/IMG_3768.PNG) ![](/img/IMG_3770.PNG) ![](/img/IMG_3771.PNG)
+
 ## Todo
 
-[] i18n
+- [ ] i18n
 
-[] UI 优化
+- [ ] UI
+
+- [ ] 上架 TestFlight
+
+## Usage
+
+0. 从 TestFlight 安装
+
+1. 克隆本项目
+
+```
+git clone https://github.com/stvlynn/EasyReceiptSwift.git
+```
+
+2. 在 Xcode 中打开 EasyReceiptSwift.xcworkspace
+
+3. 插入设备并编译
+
 
 ## Frontend
 
