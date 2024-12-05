@@ -12,6 +12,7 @@
 		7C189F173ED3B366EC6612BC /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C0B01417612A71AF7B0B88 /* MainTabBarController.swift */; };
 		ABEA116DA193C4D928C9663A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2401392EF2B28CF3ABDE06 /* SettingsViewController.swift */; };
 		AEFBADF8A8B3F7102F825D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5E02D933FA351ED7E4E458 /* AppDelegate.swift */; };
+		B0033BB52D016D6D0066595A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0033BB42D016D6D0066595A /* Assets.xcassets */; };
 		B6C0526B51B3EB6EED4652A9 /* TrainTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC57DF51F157F2C78D4F7B /* TrainTicketViewController.swift */; };
 		B8632CA23925EECAF3137386 /* FeishuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26927E2440D2EA4F542486C /* FeishuService.swift */; };
 		BBE391F210D4BBE25417DEBF /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D70FECBC97CF04BB0CAB6 /* ScanViewController.swift */; };
@@ -27,6 +28,7 @@
 		9007A82441B42890AF4AFCE6 /* DeliveryReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryReceiptViewController.swift; sourceTree = "<group>"; };
 		A3B14E79FF74CA8C69D58E46 /* DifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifyService.swift; sourceTree = "<group>"; };
 		A64D70FECBC97CF04BB0CAB6 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		B0033BB42D016D6D0066595A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1985D1F0B65864590541FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C26927E2440D2EA4F542486C /* FeishuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeishuService.swift; sourceTree = "<group>"; };
 		CA2401392EF2B28CF3ABDE06 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				CA2401392EF2B28CF3ABDE06 /* SettingsViewController.swift */,
 				3CCC57DF51F157F2C78D4F7B /* TrainTicketViewController.swift */,
 				45CD52DAA18C8449EBAE64D0 /* Services */,
+				B0033BB42D016D6D0066595A /* Assets.xcassets */,
 			);
 			path = EasyReceiptSwift;
 			sourceTree = "<group>";
@@ -127,6 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0033BB52D016D6D0066595A /* Assets.xcassets in Resources */,
 				6BC79C81CBAB222C5D53F652 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
